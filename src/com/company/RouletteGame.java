@@ -21,8 +21,8 @@ public class RouletteGame extends JFrame{
         ButtonHandler buttonHandler = new ButtonHandler();
 
         result = new JLabel();
-        result.setBounds(350, 500, 200, 30);
-        result.setFont(new Font("Serif", Font.ITALIC, 20));
+        result.setBounds(250, 500, 400, 40);
+        result.setFont(new Font("Serif", Font.ITALIC, 30));
 
         slider = new JSlider(0, 36, 0);
         slider.setPaintTicks(true);
@@ -32,21 +32,23 @@ public class RouletteGame extends JFrame{
         slider.setMinorTickSpacing(1);
         slider.addChangeListener(sliderHandler);
         slider.setOrientation(SwingConstants.VERTICAL);
-        slider.setFont(new Font("Serif", Font.ITALIC, 15));
-        slider.setBounds(10, 10, 200, 400);
+        slider.setFont(new Font("Serif", Font.ITALIC, 25));
+        slider.setBounds(10, 10, 200, 500);
 
         picked = new JLabel();
         picked.setText("Chosen number: " + 0);
-        picked.setBounds(10, 500, 300, 20);
-        picked.setFont(new Font("Serif", Font.ITALIC, 20));
+        picked.setBounds(250, 400, 400, 40);
+        picked.setFont(new Font("Serif", Font.ITALIC, 30));
 
         setLayout(new FlowLayout());
         icon = new JLabel(new ImageIcon("static.png"));
-        icon.setBounds(150, 100, 780, 360);
+        icon.setBounds(150, 10, 780, 360);
 
         JButton button = new JButton("Play");
-        button.setFont(new Font("Serif", Font.ITALIC, 20));
-        button.setBounds(650, 500, 100, 30);
+        button.setBackground(Color.GREEN);
+        button.setForeground(Color.BLUE);
+        button.setFont(new Font("Serif", Font.ITALIC, 50));
+        button.setBounds(550, 400, 200, 145);
         button.addActionListener(buttonHandler);
 
         {
@@ -86,14 +88,15 @@ public class RouletteGame extends JFrame{
                     else if(percent > 10) percent -= 2;
                 }
                 if(slider.getValue() == n){
+                    result.setForeground(Color.RED);
                     result.setText("You guessed right!");
                 } else {
+                    result.setForeground(Color.BLACK);
                     result.setText("Roulette number: " + n);
                     if(percent < 10) percent += 10;
                     else if(percent < 30) percent += 7;
                     else if(percent < 50) percent += 3;
                 }
-                slider.setValue(0);
             });
             timer.setRepeats(false);
         }
